@@ -1,0 +1,190 @@
+<!DOCTYPE html <html>
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Student Registration</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <style>
+        .container {
+            color: rgb(255, 254, 254);
+
+            background: #000428;
+            /*
+
+fallback for old browsers */
+
+            background: -webkit-linear gradient(to right, #091520, #94959b);
+
+            /* 
+Chrome 10-25, Safari 5.1-6 */
+
+            background: linear gradient(to right, #000a13, #0a0a0c);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+,
+
+Chrome 26+, Opera 12+, Safari 7+ */
+
+            text-align: left;
+
+            width: 50%;
+            float: center;
+
+            border-radius: 5px;
+
+            font-size: large;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate class="container">
+
+        <div class="form-name" style="background-size:cover; text-align: center;">
+
+            <h1>Form Validation</h1>
+
+        </div><br>
+        <div class="form-group">
+
+            <label for="fname"> First Name : </label>
+
+            <input type="text" name="fname" ng-model="fname" class="form-control" required />
+
+            <span ng-show="myForm.fname.$dirty && myForm.fname.$invalid">
+
+                <span style="color: red" ng-show="myForm.fname.$error.required">First Name is required.</span>
+            </span>
+        </div>
+
+        <div class="form-group">
+
+            <label for="lname"> Last Name: </label>
+
+            <input type="text" name="lname" ng-model="lname" clas="form-control" required />
+
+            <span ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
+
+                <span style="color: red" ng-show="myForm.lname.$error.required">Last Name is required.</span>
+
+            </span>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="age"> Age :
+            </label>
+            <input type="text" name="age" ng-model="age" ng-maxlength="2" class="form-control" required />
+
+            <span ng-show="myForm.age.$dirty && myForm.age.$invalid">
+
+                <span style="color: red" ng-if="!myForm.age.$valid">The age value is too long</span>
+
+                <span style="color: red" ng-show="myForm.age.$error.required"> Age is required.</span>
+            </span>
+
+        </div>
+
+        <div class="form-group">
+            <label for="roll"> Roll Number: </label>
+
+            <input type="text" name="roll_no" ng-model="roll_no" class="form-control" required />
+
+            <span ng-show="myForm.roll_no.$dirty && myForm.roll_no.$invalid">
+                <span style="color: red" ng-show="myForm.roll_no.$error.required">Roll No is required.</span>
+
+            </span>
+
+        </div>
+
+        <div class="form-group">
+            <label for="phone"> Phone Number :
+
+            </label>
+
+            <input type="text" name="phone" ng-pattern="phoneNumbr" ng-model="phone" class="form-control" required />
+
+            <span class="error" style="color: red" ng-show="myForm.phone.$error.required">Required!</span>
+
+            <br /><span class="error" style="color: red" ng-show="myForm.phone.$error.pattern">Please Enter valid mobile
+                number</span>
+        </div>
+
+        <div class="form-group">
+
+            <input type="submit" class="btn btn-success" ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||       
+        myForm.email.$dirty && myForm.email.$invalid" ng-click="checkvalidation();" />
+
+            <input type="reset" class="btn
+        
+        btn-danger" />
+        </div>
+
+    </form>
+
+    <script>
+
+        var app = angular.module("myApp", []);
+
+
+
+        app.controller("validateCtrl",
+
+            function ($scope) {
+                $scope.validationmsg = false;
+
+                $scope.validmsg = false;
+
+                $scope.phoneNumbr = "^((\\+91-?)|0)?[0-9]{10}$";
+
+                $scope.checkvalidation =
+
+                    function () {
+
+                        var chkselct = $scope.chkselct;
+
+                        if (chkselct = false || chkselct == undefined) {
+                            $scope.validationmsg = true;
+
+                        } else {
+                            $scope.validationmsg = false;
+                        }
+                        if ($scope.selectVal == undefined) {
+                            $scope.msg = "Please choose at least one option";
+
+                            $scope.validationmsg = true;
+
+                        } else {
+
+                            $scope.validationmsg = false;
+                        }
+                        console.log($scope.fname + " " + $scope.lname);
+
+                        console.log();
+
+                        console.log();
+
+                        console.log($scope.phone);
+
+                        console.log();
+                        console.log($scope.roll_no);
+
+                        console.log(); console.log($scope.age);
+                    };
+            });
+    </script>
+</body>
+
+</html>
